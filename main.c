@@ -11,7 +11,6 @@
 #include "jogador.h"
 #include "var.h"
 #include "rodadas.h"
-//andre é gay
 
 #define nCartas 3
 #define nJogadores 4
