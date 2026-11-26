@@ -64,6 +64,12 @@ void escolheuJogar(tp_fila *Jogadores, carta_jogada mesa[4], int numJogadorAtual
     mesa[numJogadorAtual] = cartaEscolhida; //Coloca a carta selecionada pelo jogador na mesa
 }
 
+void escolheuRoubar(tp_fila* jogadores, carta_jogada* cartajogada, tp_pilha* baralho) {
+    //Função que permite que o primeiro jogador da fila escolha uma carta para tentar a sorte trocando-a com outra carta aleatória
+    carta_jogada cartaEscolhida;
+    tentar_a_sorte(jogadores, cartaEscolhida, baralho);
+}
+
 void situacaoAtual(tp_fila *Jogadores, carta_jogada mesa[4], carta *vira, int numJogadorAtual) {
     //Função que apresenta ao jogador as informações necessárias antes de realizar sua jogada para que decida o que fazer:
     printf("=============================\n");

@@ -4,6 +4,8 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <conio.h>
+#include <time.h>
 #include "tipos.h"
 #include "pilha.h"
 #include "fila.h"
@@ -204,6 +206,78 @@ void realizar_mao(tp_fila *Jogadores, int placar[], tp_listad *listaVAR, int mao
     placar[duplaVencedoraMao - 1] += trucoAtual.valormao;
     printf("\n*** Dupla %d venceu a Mao %d e ganhou %d ponto(s)! ***\n", duplaVencedoraMao, maoAtual, trucoAtual.valormao);
     printf("Placar Atual: Dupla 1 [%d] x [%d] Dupla 2\n\n", placar[0], placar[1]);
+}
+
+int skill_check() {
+    double duracao_total = 5.0;
+    double inicio_alvo = ((double)rand() / RAND_MAX) * 4.0;
+    double fim_alvo = inicio_alvo + 1.0;
+
+    //limpa o buffer de teclas pressionadas
+    while (_kbhit()) {
+        _getch();
+    }
+
+    printf("Para trocar sua carta não podia ser tão fácil assim.\nAlguem está de olho bem aberto para você\nConsegue pegar outra carta mesmo assim?\n");
+    printf("Pressione Espaço quando aparecer '>>> AGORA <<<'\n");
+	printf("Prepare-se...\n");
+
+    clock_t tempo_inicio = clock();
+    int aviso = 0;
+
+    while (1) {
+        double tempo_passou = (double)(clock() - tempo_inicio) / CLOCKS_PER_SEC;
+
+        if(tempo_passou >= duracao_total) {
+			return 0; // Falhou no teste por não ter apertado a tecla a tempo
+        }
+
+        if (tempo_passou >= inicio_alvo && tempo_passou <= fim_alvo && !aviso) {
+            printf(">>> AGORA <<<");
+            aviso = 1;
+        }
+
+        if (_kbhit()) {
+            char tecla = _getch();
+            if (tecla == ' ') {
+                if (tempo_passou >= inicio_alvo && tempo_passou <= fim_alvo) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            }
+        }
+    }
+}
+
+
+int tentar_a_sorte(tp_fila* Jogadores, carta_jogada* cartajogada, tp_pilha* baralho) {
+    if (skill_check() == 0) {
+        return 0;
+    }
+    //Função que pergunta qual carta o jogador deseja trocar, e atualiza a mão do jogador
+    tp_jogador aux, atual;
+    topoFila(Jogadores, &atual); //seleciona o jogador do topo
+    int cartaEscolhida; //inteiro para guardar a carta escolhida pelo jogador
+    printf("Qual carta deseja trocar? (Digite um numero entre 1 e %d)\n(Digite 0 para cancelar)\n", atual.cartasRestantes);
+    scanf("%d", &cartaEscolhida);
+
+    if (cartaEscolhida >= 0 && cartaEscolhida <= atual.cartasRestantes) { //Se a carta escolhida é válida, então atualiza a carta jogada na mesa:
+        if (cartaEscolhida == 0) {
+            return 4;
+        }
+        int j = cartaEscolhida - 1;
+
+		carta novaCarta;
+		pop(baralho, &novaCarta); //Pega a nova carta do baralho
+		atual.mao[j] = novaCarta; //Atualiza a carta escolhida na mão do jogadorh
+
+        return;
+    }
+
+    printf("Carta invalida. Tente novamente.\n"); //Se a carta escolhida é inválida, então apresenta erro e faz chamada recursiva da função
+    tentar_a_sorte(Jogadores, cartajogada);
 }
 
 #endif

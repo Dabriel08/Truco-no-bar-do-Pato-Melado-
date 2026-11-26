@@ -126,4 +126,5 @@ void qual_carta_jogar(tp_fila* Jogadores, carta_jogada* cartajogada) {
     qual_carta_jogar(Jogadores, cartajogada);
 }
 
+
 #endif
