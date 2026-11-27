@@ -1,0 +1,11 @@
+aman	1	0	0	0
+amanda	1	1	0	0
+ana	2	1	0	0
+asc	1	0	0	0
+asda	1	0	0	0
+carlos 	1	0	0	0
+carlos francisco 	1	0	0	0
+carls	1	0	0	0
+gab	1	1	1	0
+gabriel	1	1	1	0
+sad	1	0	0	0
