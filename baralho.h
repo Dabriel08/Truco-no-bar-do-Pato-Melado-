@@ -16,10 +16,10 @@ void randomizador(tp_pilha* ordem) { //função para o embaralhamento
 
     //vetor de referencia de cartas, está organizado em ordem crescente por força do jogo truco:
     carta baralho[40] = {
-        {4,'O'}, {5,'O'}, {6,'O'}, {7,'O'}, {11,'O'}, {12,'O'}, {13,'O'}, {14,'O'}, {2,'O'}, {3,'O'},
-        {4,'E'}, {5,'E'}, {6,'E'}, {7,'E'}, {11,'E'}, {12,'E'}, {13,'E'}, {14,'E'}, {2,'E'}, {3,'E'},
-        {4,'C'}, {5,'C'}, {6,'C'}, {7,'C'}, {11,'C'}, {12,'C'}, {13,'C'}, {14,'C'}, {2,'C'}, {3,'C'},
-        {4,'P'}, {5,'P'}, {6,'P'}, {7,'P'}, {11,'P'}, {12,'P'}, {13,'P'}, {14,'P'}, {2,'P'}, {3,'P'}
+        { 4,'O' },{ 5,'O' },{ 6,'O' },{ 7,'O' },{ 11,'O' },{ 12,'O' },{ 13,'O' },{ 14,'O' },{ 2,'O' },{ 3,'O' },
+        { 4,'E' },{ 5,'E' },{ 6,'E' },{ 7,'E' },{ 11,'E' },{ 12,'E' },{ 13,'E' },{ 14,'E' },{ 2,'E' },{ 3,'E' },
+        { 4,'C' },{ 5,'C' },{ 6,'C' },{ 7,'C' },{ 11,'C' },{ 12,'C' },{ 13,'C' },{ 14,'C' },{ 2,'C' },{ 3,'C' },
+        { 4,'P' },{ 5,'P' },{ 6,'P' },{ 7,'P' },{ 11,'P' },{ 12,'P' },{ 13,'P' },{ 14,'P' },{ 2,'P' },{ 3,'P' }
     };
 
     for (int i = 0; i < 40; i++) {
@@ -50,11 +50,14 @@ void vira_manilha(tp_pilha* baralho, carta* manilha, carta* vira) { //Função q
     pop(baralho, vira);
     if (vira->numero == 7) {
         manilha->numero = 11; // Depois do 7 vem a Dama (11)
-    } else if (vira->numero == 14) {
+    }
+    else if (vira->numero == 14) {
         manilha->numero = 2;  // Depois do Ás (14) vem o 2
-    } else if (vira->numero == 3) {
+    }
+    else if (vira->numero == 3) {
         manilha->numero = 4;  // Depois do 3 vem o 4
-    } else {
+    }
+    else {
         manilha->numero = vira->numero + 1;
     }
 }
@@ -118,7 +121,7 @@ void qual_carta_jogar(tp_fila* Jogadores, carta_jogada* cartajogada) {
         removeFila(Jogadores, &aux);
         insereFila(Jogadores, atual);
 
-        printf("O jogador %s jogou a carta %d%c\n", cartajogada->jogador, cartajogada->cartaJogada.numero, cartajogada->cartaJogada.naipe); 
+        printf("O jogador %s jogou a carta %d%c\n", cartajogada->jogador, cartajogada->cartaJogada.numero, cartajogada->cartaJogada.naipe);
         return;
     }
 

@@ -1,0 +1,7 @@
+ana	1	3	0
+carlos 	0	2	0
+gabriel	1	1	0
+amanda	1	1	0
+aman	0	2	0
+carls	0	2	0
+gab	1	1	0
